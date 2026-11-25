@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>日日升 - 技术论坛</title>
+    <!-- 扣子 Web SDK（按官方推荐：动态加载 + onload 初始化） -->
+    <script>
+      (function () {
+        var s = document.createElement('script');
+        s.src = 'https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/1.2.0-beta.19/libs/cn/index.js';
+        document.head.appendChild(s);
+        s.onload = function () {
+          if (!window.CozeWebSDK) {
+            console.error('[Coze] SDK 未加载');
+            return;
+          }
+          new window.CozeWebSDK.WebChatClient({
+            config: {
+              bot_id: '7708326560994410522',
+              isIframe: false,
+            },
+            componentProps: { title: '小太阳' },
+            auth: {
+              type: 'token',
+              token: 'pat_bJWxBzgtX29k2pv4N09y373xn8xswa5SheJmKGtlXn77SOhPb8tmYFvpbKPfoVH1',
+              onRefreshToken: function () {
+                return 'pat_bJWxBzgtX29k2pv4N09y373xn8xswa5SheJmKGtlXn77SOhPb8tmYFvpbKPfoVH1';
+              },
+            },
+          });
+          console.log('[Coze] 小太阳已初始化');
+        };
+        s.onerror = function () {
+          console.error('[Coze] SDK 脚本加载失败');
+        };
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
